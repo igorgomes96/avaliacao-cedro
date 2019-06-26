@@ -1,0 +1,9 @@
+<label [for]="id">{{ label }}</label>
+<input [type]="type" class="form-control" [id]="id" [placeholder]="placeholder" [readOnly]="!!readOnly" [name]="name"
+  [(ngModel)]="value" (input)="pushChanges($event.target.value)" [class.is-invalid]="mensagem">
+<div class="invalid-feedback">
+  {{ mensagem }}
+</div>
+<!-- <div class="valid-feedback">
+    Looks good!
+  </div> -->

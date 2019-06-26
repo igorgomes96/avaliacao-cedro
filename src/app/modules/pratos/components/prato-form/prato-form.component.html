@@ -1,0 +1,36 @@
+<form autocomplete="off" (submit)="onSalvar()" #form="ngForm">
+
+    <div class="form-row">
+        <div class="col-sm-12 mb-3">
+            <label for="restaurante">Restaurante</label>
+            <select name="restaurante" id="restaurante" [(ngModel)]="prato.restauranteId" #restaurante="ngModel" required class="form-control" 
+                [class.is-invalid]="restaurante.invalid">
+                <option [value]="undefined" *ngIf="prato.restauranteId === undefined">(Selecione o restaurante)</option>
+                <option *ngFor="let restaurante of restaurantes" [value]="restaurante.id">{{ restaurante.nome }}
+                </option>
+            </select>
+            <div class="invalid-feedback">
+                Restaurante é obrigatório!
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="col-sm-12 mb-3">
+            <app-custom-input [(ngModel)]="prato.nome" name="nome" label="Nome" required #nome="ngModel"
+                [control]="nome"></app-custom-input>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 col-sm-6 col-xs-12 mb-3">
+            <app-custom-input [(ngModel)]="prato.preco" type="number" name="preco" label="Preço (R$)" required
+                #preco="ngModel" [control]="preco"></app-custom-input>
+        </div>
+    </div>
+
+    <button class="btn btn-danger" type="reset" (click)="onCancelar()"><i class="fa fa-ban"></i> Cancelar</button>
+    <button class="btn btn-success ml-2" type="submit" [disabled]="form.invalid"><i class="fa fa-save"></i>
+        Salvar</button>
+</form>

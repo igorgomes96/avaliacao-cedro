@@ -1,0 +1,37 @@
+<h4>Restaurantes</h4>
+<br>
+<app-panel title="Filtros">
+    <app-restaurantes-pesquisa (pesquisa)="pesquisa($event)"></app-restaurantes-pesquisa>
+</app-panel>
+
+<a class="btn btn-success mt-3" routerLink="novo"><i class="fa fa-plus"></i> Cadastrar Novo Restaurante</a>
+
+<div class="row mt-4">
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Restaurante</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let restaurante of restaurantes">
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm mr-md-3 mr-2" [routerLink]="restaurante.id">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <button class="btn btn-outline-danger btn-sm" (click)="delete(restaurante.id)">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </td>
+                        <td>{{ restaurante.id }}</td>
+                        <td>{{ restaurante.nome }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
