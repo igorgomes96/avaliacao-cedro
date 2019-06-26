@@ -6,6 +6,7 @@ using RestauranteApi.Models;
 using RestauranteApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteApi.Filters;
 
 namespace PratoApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace PratoApi.Controllers
         }
 
         [HttpGet]
+        [Pagination]
         public IQueryable<Prato> Get() => _pratosService.Query();
 
         [HttpGet("{id}")]

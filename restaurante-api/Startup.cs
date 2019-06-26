@@ -39,6 +39,8 @@ namespace RestauranteApi
             services.AddScoped<IRestaurantesService, RestaurantesService>();
             services.AddScoped<IPratosService, PratosService>();
 
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -55,7 +57,8 @@ namespace RestauranteApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
+            app.UseCors("AllowAll");
             app.UseHttpErrorMiddleware();
             app.UseMvc();
         }
@@ -67,8 +70,8 @@ namespace RestauranteApi
                 new Restaurante { Id = 2, Nome = "Restaurante 2" }
             });
             context.Pratos.AddRange(new List<Prato> {
-                new Prato { Id = 1, RestauranteId = 1, Nome = "Prato 1" },
-                new Prato { Id = 2, RestauranteId = 2, Nome = "Prato 2" },
+                new Prato { Id = 1, RestauranteId = 1, Nome = "Prato 1", Preco = 1 },
+                new Prato { Id = 2, RestauranteId = 2, Nome = "Prato 2", Preco = 2 },
             });
             context.SaveChanges();
         }

@@ -1,0 +1,9 @@
+li.page-item.active a {
+    cursor: pointer;
+    color: white;
+}
+
+li.page-item a {
+    cursor: pointer;
+    color: #007bff;
+}

@@ -1,0 +1,7 @@
+<nav *ngIf="paginationInfo.pageCount > 1">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="anterior()">Anterior</a></li>
+      <li class="page-item" [class.active]="page === paginationInfo.currentPage" *ngFor="let page of pages"><a class="page-link" (click)="mudaPagina(page)">{{ page }}</a></li>
+      <li class="page-item"><a class="page-link" (click)="proximo()">Próximo</a></li>
+    </ul>
+  </nav>

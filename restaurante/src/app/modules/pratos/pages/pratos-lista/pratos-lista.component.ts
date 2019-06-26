@@ -3,6 +3,7 @@ import { Prato } from 'src/app/shared/models/prato';
 import { PratosService } from 'src/app/core/services/pratos.service';
 import Swal from 'sweetalert2';
 import { switchMap } from 'rxjs/operators';
+import { PagedResult } from 'src/app/shared/models/paged-result';
 
 @Component({
   selector: 'app-pratos-lista',
@@ -11,14 +12,29 @@ import { switchMap } from 'rxjs/operators';
 })
 export class PratosListaComponent implements OnInit {
 
-  pratos: Prato[] = [];
+  pratos: PagedResult<Prato> = {
+    currentPage: 1,
+    pageCount: 0,
+    pageSize: 1,
+    result: [],
+    totalRecords: 0
+  };
   constructor(private pratosService: PratosService) { }
 
   ngOnInit() {
-    this.pratosService.getAll()
-      .subscribe((pratos: Prato[]) => {
+    this.carregaPratos();
+  }
+
+  carregaPratos() {
+    this.pratosService.getAll({ pageSize: this.pratos.pageSize, pageNumber: this.pratos.currentPage })
+      .subscribe((pratos: PagedResult<Prato>) => {
         this.pratos = pratos;
       });
+  }
+
+  alteraPagina(pagina: number) {
+    this.pratos.currentPage = pagina;
+    this.carregaPratos();
   }
 
   delete(id: number) {
@@ -33,8 +49,8 @@ export class PratosListaComponent implements OnInit {
       if (confirmacao.value) {
         this.pratosService.delete(id)
           .pipe(
-            switchMap(_ => this.pratosService.getAll())
-          ).subscribe((pratos: Prato[]) => {
+            switchMap(_ => this.pratosService.getAll({ pageSize: this.pratos.pageSize, pageNumber: this.pratos.currentPage }))
+          ).subscribe((pratos: PagedResult<Prato>) => {
             this.pratos = pratos;
           });
       }

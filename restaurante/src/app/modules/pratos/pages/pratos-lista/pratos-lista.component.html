@@ -2,7 +2,13 @@
 
 <a class="btn btn-success mt-3" routerLink="novo"><i class="fa fa-plus"></i> Cadastrar Novo Prato</a>
 
-<div class="row mt-4">
+<div class="row mt-5">
+    <div class="col-sm-12">
+        <app-pagination [paginationInfo]="pratos" (alteraPagina)="alteraPagina($event)"></app-pagination>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-sm-12">
         <div class="table-responsive">
             <table class="table table-striped">
@@ -16,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let prato of pratos">
+                    <tr *ngFor="let prato of pratos.result">
                         <td>
                             <a class="btn btn-outline-primary btn-sm mr-md-3 mr-2" [routerLink]="prato.id">
                                 <i class="fa fa-pencil"></i>
@@ -33,5 +39,10 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <app-pagination [paginationInfo]="pratos" (alteraPagina)="alteraPagina($event)"></app-pagination>
     </div>
 </div>
