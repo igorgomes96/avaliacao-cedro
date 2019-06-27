@@ -12,8 +12,9 @@ A organização do projeto Angular foi baseada no artigo [How to define a highly
 
 ## HttpErrorMiddleware
 
-No projeto .Net Core, foi criado um Middleware para capturar as Exceções globalmente, e de acordo com a Exceção definir o HTTP Status Code e a mensagem de erro da resposta da requisição. Por esse motivo, existem métodos nos Controllers sem Try-Catch, já que o Middleware fará a captura da Exceção lançada pela camada de serviço.
-(Obs.: no modo de Debug do Visual Studio, antes do tratamento da Exceção pelo Middleware a execução pode ser interrompida quando a Exceção for lançada. Nesse caso, basta marcar a caixa restaurante-api.dll abaixo de "Break when this exception type is user-unhandled Except when thrown from", conform imagem abaixo. Executando a aplicação diretamente pelo comando `dotnet run` não há esse problema.)
+No projeto .Net Core, foi criado um Middleware para capturar as Exceções globalmente, e de acordo com a Exceção definir o HTTP Status Code e a mensagem de erro da resposta da requisição. Por esse motivo, existem métodos nos Controllers sem Try-Catch, já que o Middleware fará a captura da Exceção lançada pela camada de serviço.  
+(Obs.: no modo de Debug do Visual Studio, antes do tratamento da Exceção pelo Middleware a execução pode ser interrompida quando a Exceção for lançada. Nesse caso, basta marcar a caixa restaurante-api.dll abaixo de "Break when this exception type is user-unhandled Except when thrown from", conforme imagem abaixo. Executando a aplicação diretamente pelo comando `dotnet run` não há esse problema.)  
+![Erro no Visual Studio](exception-vs.png)
 
 ## PaginationAttribute
 
