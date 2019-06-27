@@ -7,3 +7,7 @@ li.page-item a {
     cursor: pointer;
     color: #007bff;
 }
+
+.registros-label {
+    font-size: 90%;
+}

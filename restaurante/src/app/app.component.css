@@ -1,3 +1,7 @@
+.navbar.fixed-bottom {
+    color: white;
+} 
+
 .container {
     margin-top: 1.5rem;
 }

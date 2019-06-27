@@ -2,6 +2,7 @@ using System.Linq;
 using RestauranteApi.Models;
 using RestauranteApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using RestauranteApi.Exceptions;
 
 namespace RestauranteApi.Services.Implementations {
     public class PratosService: CrudService<Prato>, IPratosService {
@@ -17,6 +18,7 @@ namespace RestauranteApi.Services.Implementations {
 
         public override Prato Find(params object[] key) {
             Prato prato = base.Find(key);
+            if (prato == null) throw new NotFoundException("Prato não Localizado.");
             _db.Entry(prato).Reference(p => p.Restaurante).Load();
             return prato; 
         }

@@ -35,7 +35,7 @@ export class RestaurantesListaComponent implements OnInit {
   delete(id: number) {
     Swal.fire({
       title: 'Tem certeza?',
-      text: 'Você não conseguirá desfazer a exclussão desse restaurante.',
+      text: 'Todos os pratos desse restaurante também serão excluídos e você não conseguirá desfazer a exclussão desse restaurante.',
       type: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sim',

@@ -1,7 +1,32 @@
-<nav *ngIf="paginationInfo.pageCount > 1">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" (click)="anterior()">Anterior</a></li>
-      <li class="page-item" [class.active]="page === paginationInfo.currentPage" *ngFor="let page of pages"><a class="page-link" (click)="mudaPagina(page)">{{ page }}</a></li>
-      <li class="page-item"><a class="page-link" (click)="proximo()">Próximo</a></li>
-    </ul>
-  </nav>
+<nav>
+
+  <div class="form-row" *ngIf="showRegistrosPorPagina">
+    <div class="form-group col-lg-2 col-md-4 col-sm-8">
+      <label for="registros" class="registros-label">Registros Por Pág.:</label>
+      <select name="registros" [ngModel]="paginationInfo.pageSize" (ngModelChange)="mudaTamanhoPagina($event)" id="registros" class="form-control form-control-sm">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="paginationInfo.pageCount > 1">
+    <div class="col-sm">
+      <ul class="pagination pagination-sm">
+        <li class="page-item"><a class="page-link" (click)="anterior()"><i class="fa fa-angle-left"></i></a></li>
+        <li class="page-item" [class.active]="page === paginationInfo.currentPage" *ngFor="let page of pages"><a
+            class="page-link" (click)="mudaPagina(page)">{{ page }}</a></li>
+        <li class="page-item"><a class="page-link" (click)="proximo()"><i class="fa fa-angle-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  
+</nav>
+
+<div class="row" *ngIf="showRegistrosPorPagina">
+  <div class="col-sm-12">
+    <small>Total de Registros: {{ paginationInfo.totalRecords }}</small>
+  </div>
+</div>

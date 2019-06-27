@@ -23,7 +23,7 @@ namespace RestauranteApi.Controllers
 
         [HttpGet]
         [Pagination]
-        public IQueryable<Restaurante> Get() => _restaurantesService.Query();
+        public IQueryable<Restaurante> Get(string nome = null) => _restaurantesService.QueryByNome(nome);
 
         [HttpGet("{id}")]
         public ActionResult<Restaurante> Get(int id) {

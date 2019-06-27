@@ -21,7 +21,6 @@ export class RestaurantesPesquisaComponent implements OnInit {
   }
 
   buscar() {
-    console.log(this.form.get('textoPesquisa').value);
     this.pesquisa.emit(this.form.get('textoPesquisa').value);
   }
 

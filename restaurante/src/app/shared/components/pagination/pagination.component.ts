@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PagedResult } from '../../models/paged-result';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-pagination',
@@ -9,8 +10,10 @@ import { PagedResult } from '../../models/paged-result';
 export class PaginationComponent implements OnInit {
 
   pages: number[] = [];
+  // tslint:disable-next-line:variable-name
   _paginationInfo: PagedResult<any>;
 
+  @Input() showRegistrosPorPagina = true;
   @Input()
   set paginationInfo(pageResult: PagedResult<any>) {
     this._paginationInfo = pageResult;
@@ -28,9 +31,9 @@ export class PaginationComponent implements OnInit {
   get paginationInfo(): PagedResult<any> {
     if (!this._paginationInfo) {
       return {
-        currentPage: 0,
+        currentPage: 1,
         pageCount: 0,
-        pageSize: 0,
+        pageSize: 5,
         result: [],
         totalRecords: 0
       };
@@ -38,8 +41,8 @@ export class PaginationComponent implements OnInit {
     return this._paginationInfo;
   }
 
-
   @Output() alteraPagina = new EventEmitter<number>();
+  @Output() alteraTamanhoPagina = new EventEmitter<number>();
 
   constructor() { }
 
@@ -66,6 +69,10 @@ export class PaginationComponent implements OnInit {
       this.paginationInfo.currentPage = page;
       this.alteraPagina.emit(page);
     }
+  }
+
+  mudaTamanhoPagina(tamanhoPagina: number) {
+    this.alteraTamanhoPagina.emit(tamanhoPagina);
   }
 
 }

@@ -20,7 +20,7 @@
                 <tbody>
                     <tr *ngFor="let restaurante of restaurantes">
                         <td>
-                            <a class="btn btn-outline-primary btn-sm mr-md-3 mr-2" [routerLink]="restaurante.id">
+                            <a class="btn btn-outline-primary btn-sm mr-2" [routerLink]="restaurante.id">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <button class="btn btn-outline-danger btn-sm" (click)="delete(restaurante.id)">

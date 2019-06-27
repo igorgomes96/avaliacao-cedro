@@ -30,9 +30,14 @@ namespace RestauranteApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(opt =>
+            /*services.AddDbContext<Context>(opt =>
             {
                 opt.UseInMemoryDatabase("restaurante");
+            });*/
+
+            services.AddDbContext<Context>(opt =>
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("Base"));
             });
 
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
@@ -47,7 +52,7 @@ namespace RestauranteApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Context context)
         {
-            SeedData(context);
+            // SeedData(context);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

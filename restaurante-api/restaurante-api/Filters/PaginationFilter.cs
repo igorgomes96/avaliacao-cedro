@@ -20,6 +20,7 @@ namespace RestauranteApi.Filters
                     if (urlQuery.ContainsKey("pageNumber"))
                         pageNumber = int.Parse(urlQuery["pageNumber"]);
 
+                    if (pageNumber == 0) pageNumber = 1;
                     IQueryable<object> response = ((ObjectResult)context.Result).Value as IQueryable<object>;
                     var rowCount = response.Count();
                     var pageCount = (int)Math.Ceiling((double)rowCount / pageSize);

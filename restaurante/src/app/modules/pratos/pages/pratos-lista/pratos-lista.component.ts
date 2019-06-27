@@ -15,7 +15,7 @@ export class PratosListaComponent implements OnInit {
   pratos: PagedResult<Prato> = {
     currentPage: 1,
     pageCount: 0,
-    pageSize: 1,
+    pageSize: 5,
     result: [],
     totalRecords: 0
   };
@@ -34,6 +34,11 @@ export class PratosListaComponent implements OnInit {
 
   alteraPagina(pagina: number) {
     this.pratos.currentPage = pagina;
+    this.carregaPratos();
+  }
+
+  alteraTamanhoPagina(tamanhoPagina: number) {
+    this.pratos.pageSize = tamanhoPagina;
     this.carregaPratos();
   }
 
