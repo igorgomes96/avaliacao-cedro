@@ -1,6 +1,6 @@
 # Restaurante
 
-Essa aplicação foi desenvolvida em .Net Core 2.2 e Angular 8. Seguem algumas considerações abaixo.
+Essa aplicação foi desenvolvida em .Net Core 2.2 e Angular 8. Seguem algumas considerações.
 
 ## Banco de Dados
 
@@ -17,12 +17,8 @@ No projeto .Net Core, foi criado um Middleware para capturar as Exceções globa
 
 ## PaginationAttribute
 
-Foi criado o ResultFilter PaginationAttribute para faciliar paginação de registros.
+Foi criado o ResultFilter PaginationAttribute para facilitar paginação de registros. Para utilizar, basta adicionar a annotation [Pagination] em uma Action do Controller que retorne um IQueryable. O PagintaionAttribute verifica se na URL da requisição existem as query params PageSize e PageNumber e faz a paginação dos registros, encapsulando o resultado em um objeto do tipo PagedResult. Foi utilizado esse recurso no método Get() de PratosController.
 
-## Running end-to-end tests
+## Testes
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Foi criado o projeto RestauranteApiTest para os testes unitários. Para rodar os testes basta executar o comando `dotnet test` no diretório do projeto.
