@@ -12,10 +12,19 @@ namespace RestauranteApi.Services.Implementations {
             _db = db;
         }
 
+        /// <summary>
+        /// Retorna todos os pratos cadastrados, e carregada os restaurantes relacionados para cada registro.
+        /// </summary>
+        /// <returns></returns>
         public override IQueryable<Prato> Query() {
             return base.Query().Include(p => p.Restaurante);
         }
 
+        /// <summary>
+        /// Retorna o Prato pelo Id, com o restaurante relacionadado carregado.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public override Prato Find(params object[] key) {
             Prato prato = base.Find(key);
             if (prato == null) throw new NotFoundException("Prato não Localizado.");

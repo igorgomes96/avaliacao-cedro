@@ -18,6 +18,11 @@ namespace RestauranteApi.Middleware
             _next = next;
         }
 
+        /// <summary>
+        /// Retorna a mensagem de erro e o Status HTTP de acordo com a Exceção lançada
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext httpContext)
         {
             try

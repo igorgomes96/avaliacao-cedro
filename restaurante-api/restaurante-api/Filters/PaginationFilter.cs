@@ -8,6 +8,15 @@ namespace RestauranteApi.Filters
 {
     public class PaginationAttribute : ResultFilterAttribute
     {
+
+        /// <summary>
+        /// Verifica 
+        ///  * se o foi passada pela URL uma query param com o parâmetro pageSize;
+        ///  * se o retorno da Action do Controller é do tipo ObjectResult e esse resultado é um IQueryable.
+        /// Se sim, faz a paginação dos registros e reescrete o body da requisição com um objeto do tipo 
+        /// PagedResult, o qual encapsula os registros paginados e as informações de paginação.
+        /// </summary>
+        /// <param name="context"></param>
         public override void OnResultExecuting(ResultExecutingContext context)
         {
             try
