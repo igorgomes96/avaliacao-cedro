@@ -27,7 +27,7 @@ namespace RestauranteApi.Services.Implementations {
         /// <returns></returns>
         public override Prato Find(params object[] key) {
             Prato prato = base.Find(key);
-            if (prato == null) throw new NotFoundException("Prato não Localizado.");
+            if (prato == null) throw new NotFoundException("Prato nÃ£o Localizado.");
             _db.Entry(prato).Reference(p => p.Restaurante).Load();
             return prato; 
         }
