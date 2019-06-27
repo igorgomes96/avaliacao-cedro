@@ -1,22 +1,23 @@
 # Restaurante
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
+Essa aplicação foi desenvolvida em .Net Core 2.2 e Angular 8. Seguem algumas considerações abaixo.
 
-## Development server
+## Banco de Dados
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Foi utilizado o SQL Server e o Migrations para manter o histórico de alterações do Model. Para criar/atualizar o banco de dados, modifique a ConnectionString Base no arquivo appsettings.json do projeto RestauranteApi e execute o comando `dotnet ef database update` no diretório do projeto. 
 
-## Code scaffolding
+## Estrutura de Diretórios - Front-End
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A organização do projeto Angular foi baseada no artigo [How to define a highly scalable folder structure for your Angular project](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7).
 
-## Build
+## HttpErrorMiddleware
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+No projeto .Net Core, foi criado um Middleware para capturar as Exceções globalmente, e de acordo com a Exceção definir o HTTP Status Code e a mensagem de erro da resposta da requisição. Por esse motivo, existem métodos nos Controllers sem Try-Catch, já que o Middleware fará a captura da Exceção lançada pela camada de serviço.
+(Obs.: no modo de Debug do Visual Studio, antes do tratamento da Exceção pelo Middleware a execução pode ser interrompida quando a Exceção for lançada. Nesse caso, basta marcar a caixa restaurante-api.dll abaixo de "Break when this exception type is user-unhandled Except when thrown from", conform imagem abaixo. Executando a aplicação diretamente pelo comando `dotnet run` não há esse problema.)
 
-## Running unit tests
+## PaginationAttribute
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Foi criado o ResultFilter PaginationAttribute para faciliar paginação de registros.
 
 ## Running end-to-end tests
 
